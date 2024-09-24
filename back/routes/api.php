@@ -23,6 +23,7 @@ Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout']);
 
 Route::middleware(['jwt.auth'])->group(function () {
+    Route::post('register', [AuthController::class, 'register']);
     Route::get('user', function () {
         return auth()->user();
     });
