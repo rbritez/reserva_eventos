@@ -104,7 +104,7 @@ class SpaceController extends Controller
      */
     public function show(Space $space): JsonResponse
     {
-        return response()->json(new SpaceResource($space->load('type')));
+        return response()->json(new SpaceResource($space->load('type')), Response::HTTP_OK);
     }
 
     /**
