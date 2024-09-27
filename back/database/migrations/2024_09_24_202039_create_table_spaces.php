@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->integer('capacity');
-            $table->foreignId('type_id')->constrained('types'); // Por ejemplo: 'salón', 'auditorio', etc.
-            $table->string('photos')->nullable(); // URL o JSON con las fotos
+            $table->foreignId('type_id')->constrained('types');
+            $table->string('photos')->nullable();
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }
