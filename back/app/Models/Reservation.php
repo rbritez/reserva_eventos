@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\RoleEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,5 +30,16 @@ class Reservation extends Model
     public function space()
     {
         return $this->belongsTo(Space::class);
+    }
+
+    public static function forRole(): ?object
+    {
+        $user = auth()->user();
+        if ($user->hasRole(RoleEnum::ADMIN->value)) {
+            $reservations = Reservation::with('user', 'space')->get();
+        } else {
+            $reservations = Reservation::with('user', 'space')->where('user_id', $user->id)->get();
+        }
+        return $reservations;
     }
 }
