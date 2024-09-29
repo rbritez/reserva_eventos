@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SpaceRequest;
+use App\Http\Requests\Space\CreateRequest;
+use App\Http\Requests\Space\UpdateRequest;
 use App\Http\Resources\SpaceResource;
 use App\Models\Space;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use OpenApi\Annotations as OA;
 
@@ -70,7 +72,7 @@ class SpaceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SpaceRequest $request): JsonResponse
+    public function store(CreateRequest $request): JsonResponse
     {
         $space = Space::create($request->validated());
         return response()->json(new SpaceResource($space), Response::HTTP_CREATED);
@@ -122,7 +124,7 @@ class SpaceController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/StoreSpaceRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/UpdateSpaceRequest")
      *     ),
      *     @OA\Response(
      *         response="200",
@@ -139,12 +141,9 @@ class SpaceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SpaceRequest $request, Space $space): JsonResponse
+    public function update(UpdateRequest $request, Space $space): JsonResponse
     {
-        // Actualiza el espacio con los datos validados
         $space->update($request->validated());
-
-        // Devuelve el recurso actualizado
         return response()->json(new SpaceResource($space), Response::HTTP_OK);
     }
 
@@ -164,7 +163,7 @@ class SpaceController extends Controller
      *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(
-     *         response="200",
+     *         response="204",
      *         description="Space deleted successfully"
      *     ),
      *     @OA\Response(response="404", description="Space not found")
@@ -182,6 +181,6 @@ class SpaceController extends Controller
         }
         $space->delete();
     
-        return response()->json([], Response::HTTP_OK);
+        return response()->json([], Response::HTTP_NO_CONTENT);
     }
 }

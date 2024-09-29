@@ -18,8 +18,8 @@ class TypeSpaceControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->tokenAdmin = $this->createTokenUser(RoleEnum::ADMIN);
-        $this->tokenAssistant = $this->createTokenUser(RoleEnum::ASSISTANT);
+        $this->tokenAdmin = $this->createTokenUser(RoleEnum::ADMIN->value);
+        $this->tokenAssistant = $this->createTokenUser(RoleEnum::ASSISTANT->value);
     }
     /**
      * A basic feature test example.

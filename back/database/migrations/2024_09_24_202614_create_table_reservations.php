@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('space_id')->constrained();
             $table->string('event_name');
             $table->string('status');
+            $table->date('date');
             $table->time('start_time');
             $table->time('end_time');
             $table->timestamps();

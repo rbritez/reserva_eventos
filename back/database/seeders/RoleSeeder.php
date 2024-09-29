@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Enums\RoleEnum;
 use App\Models\Role;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class RoleSeeder extends Seeder
@@ -15,8 +15,8 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        Role::create(['name' => 'admin']);
-        Role::create(['name' => 'assistant']);
-        Role::create(['name' => 'common']);
+        Role::create(['name' => RoleEnum::ADMIN->value]);
+        Role::create(['name' => RoleEnum::ASSISTANT->value]);
+        Role::create(['name' => RoleEnum::CLIENT->value]);
     }
 }

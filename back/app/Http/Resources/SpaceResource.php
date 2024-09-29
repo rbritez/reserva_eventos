@@ -16,10 +16,9 @@ class SpaceResource extends JsonResource
     *     @OA\Property(property="name", type="string", description="Name of the space"),
     *     @OA\Property(property="description", type="string", description="Description of the space"),
     *     @OA\Property(property="capacity", type="integer", description="Capacity of the space"),
-    *     @OA\Property(property="type_name", type="string", description="Type name of the space"),
     *     @OA\Property(property="photos", type="string", description="Photos of the space"),
     *     @OA\Property(property="status", type="boolean", description="Status of the space"),
-    *     @OA\Property(property="type", type="string", description="Type name of the space"),
+    *     @OA\Property(property="type", ref="#/components/schemas/TypeResource"),
     *     @OA\Property(property="created_at", type="string", format="date-time", description="Creation timestamp"),
     *     @OA\Property(property="updated_at", type="string", format="date-time", description="Update timestamp")
     * )
@@ -37,10 +36,9 @@ class SpaceResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'capacity' => $this->capacity,
-            'type_name' => $this->type->name,
             'photos' => $this->photos,
             'status' => $this->status,
-            'type' => $this->type?->name,
+            'type' => new TypeResource($this->type),
             'created_at' => $this->created_at->toISOString(),
             'updated_at' => $this->updated_at->toISOString()
         ];
