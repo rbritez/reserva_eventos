@@ -62,5 +62,15 @@ In order to ensure that the Laravel community is welcoming to all, please review
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
 ## License
+Comandos a ejecutar luego de la descarga del proyecto
+php artisan key:generate
+php artisan jwt:secret
+php artisan migrate
+php artisan db:seed
+php artisan l5-swagger:generate
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+For tests
+php artisan make:factory NameModelFactory --model=NameModel
+php artisan make:test NameControllerTest
